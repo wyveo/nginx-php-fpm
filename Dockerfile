@@ -7,19 +7,17 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV NGINX_VERSION 1.11.3-1~jessie
 
+# Install Basic Requirements
+RUN apt-get update && apt-get install -y wget curl nano zip unzip git
+
 # Add sources for latest nginx and php
-RUN apt-get update && apt-get install -y wget
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
     && echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
     && echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
     && echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
     && wget --no-check-certificate https://www.dotdeb.org/dotdeb.gpg \
     && apt-key add dotdeb.gpg \
-    && apt-get update \
-    && apt-get -y upgrade
-
-# Install Basic Requirements
-RUN apt-get -y install curl nano zip unzip git
+    && apt-get update
 
 # Install nginx
 RUN apt-get install --no-install-recommends --no-install-suggests -y \
