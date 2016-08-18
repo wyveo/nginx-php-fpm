@@ -10,6 +10,9 @@ ENV NGINX_VERSION 1.11.3-1~jessie
 # Install Basic Requirements
 RUN apt-get update && apt-get install -y wget curl nano zip unzip git
 
+# Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
+RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
+
 # Add sources for latest nginx and php
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
     && echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
