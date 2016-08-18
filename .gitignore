@@ -1,0 +1,30 @@
+# Tmp files to always-ignore extensions
+*.diff
+*.err
+*.rej
+*.swo
+*~
+*.sass-cache
+*.orig
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+/.redcar
+/nbproject
+/.project
+/.idea
+/.eclipse
+*.vi
+
+# logs files
+*.log
