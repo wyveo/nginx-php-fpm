@@ -29,7 +29,7 @@ RUN apt-get install --no-install-recommends --no-install-suggests -y \
 # Install PHP
 RUN apt-get -y install php7.0-fpm php7.0-cli php7.0-dev php7.0-common \
     php7.0-json php7.0-opcache php7.0-readline php7.0-mbstring php7.0-curl \
-    php-imagick php7.0-mcrypt php7.0-mysql php7.0-xml php-redis
+    php7.0-imagick php7.0-mcrypt php7.0-mysql php7.0-xml php7.0-redis
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
