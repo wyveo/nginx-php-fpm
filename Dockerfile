@@ -36,6 +36,9 @@ RUN apt-get install --no-install-recommends --no-install-suggests -y \
 RUN rm -rf /etc/nginx/conf.d/default.conf
 ADD ./default.conf /etc/nginx/conf.d/default.conf
 
+# Override default nginx welcome page
+COPY html /usr/share/nginx/html
+
 # Install PHP
 RUN apt-get -y install php7.0-fpm php7.0-cli php7.0-dev php7.0-common \
     php7.0-json php7.0-opcache php7.0-readline php7.0-mbstring php7.0-curl \
