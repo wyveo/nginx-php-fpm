@@ -8,17 +8,19 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_VERSION 1.11.3-1~jessie
 
 # Install Basic Requirements
-RUN apt-get update && apt-get install -y wget curl nano zip unzip git
+RUN apt-get update && apt-get install -y wget curl nano zip unzip supervisor git
 
 # Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
+
+ADD ./supervisord.conf /etc/supervisord.conf
 
 # Add sources for latest nginx and php
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
     && echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
     && echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
     && echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
-    && wget --no-check-certificate https://www.dotdeb.org/dotdeb.gpg \
+    && wget https://www.dotdeb.org/dotdeb.gpg \
     && apt-key add dotdeb.gpg \
     && apt-get update
 
@@ -39,6 +41,9 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
+# Add Scripts
+ADD ./start.sh /start.sh
+
 EXPOSE 80 443
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/start.sh"]
