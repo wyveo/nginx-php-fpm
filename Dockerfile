@@ -38,10 +38,6 @@ RUN apt-get -y install php7.0-fpm php7.0-cli php7.0-dev php7.0-common \
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
-
 # Add Scripts
 ADD ./start.sh /start.sh
 RUN chmod 755 /start.sh
