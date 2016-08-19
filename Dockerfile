@@ -61,6 +61,10 @@ sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf}
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Stop nginx and php-fpm
+RUN service nginx stop
+RUN service php7.0-fpm stop
+
 # Add Scripts
 ADD ./start.sh /start.sh
 RUN chmod 755 /start.sh
