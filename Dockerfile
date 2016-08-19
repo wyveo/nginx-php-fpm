@@ -8,12 +8,15 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_VERSION 1.11.3-1~jessie
 
 # Install Basic Requirements
-RUN apt-get update && apt-get install -y wget curl nano zip unzip supervisor git
+RUN apt-get update && apt-get install -y wget curl nano zip unzip python-pip git
+
+# Supervisor config
+RUN pip install supervisor supervisor-stdout
+
+ADD ./supervisord.conf /etc/supervisord.conf
 
 # Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
-
-ADD ./supervisord.conf /etc/supervisord.conf
 
 # Add sources for latest nginx and php
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
