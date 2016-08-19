@@ -56,7 +56,7 @@ sed -i -e "s/user = www-data/user = nginx/g" ${fpm_conf} && \
 sed -i -e "s/group = www-data/group = nginx/g" ${fpm_conf} && \
 sed -i -e "s/;listen.owner = www-data/listen.owner = nginx/g" ${fpm_conf} && \
 sed -i -e "s/;listen.group = www-data/listen.group = nginx/g" ${fpm_conf} && \
-sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf} &&\
+sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf}
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
