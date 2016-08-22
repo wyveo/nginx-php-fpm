@@ -66,6 +66,8 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 ADD ./start.sh /start.sh
 RUN chmod 755 /start.sh
 
+VOLUME /usr/share/nginx/html
+
 EXPOSE 80 443
 
 CMD ["/start.sh"]

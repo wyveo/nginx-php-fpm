@@ -14,7 +14,7 @@ $ docker pull wyveo/nginx-php-fpm
 ```
 
 ## Running
-To simply run the container:
+To run the container:
 ```
 $ sudo docker run -d wyveo/nginx-php-fpm
 ```
