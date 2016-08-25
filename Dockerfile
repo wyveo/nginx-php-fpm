@@ -9,7 +9,7 @@ ENV php_conf /etc/php/7.0/fpm/php.ini
 ENV fpm_conf /etc/php/7.0/fpm/pool.d/www.conf
 
 # Install Basic Requirements
-RUN apt-get update && apt-get install -y wget curl nano zip unzip python-pip git
+RUN apt-get update && apt-get install --no-install-recommends -y wget curl nano zip unzip python-pip git
 
 # Supervisor config
 RUN pip install supervisor supervisor-stdout
@@ -66,8 +66,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 ADD ./start.sh /start.sh
 RUN chmod 755 /start.sh
 
-VOLUME /usr/share/nginx/html
-
-EXPOSE 80 443
+EXPOSE 80
 
 CMD ["/start.sh"]
