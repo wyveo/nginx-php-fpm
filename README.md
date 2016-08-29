@@ -1,4 +1,4 @@
-[![Docker Hub; wyveo/nginx-php-fpm](https://img.shields.io/badge/docker%20hub-wyveo%2Fnginx--php--fpm-blue.svg)](https://hub.docker.com/r/wyveo/nginx-php-fpm/) ![nginx 1.11.3](https://img.shields.io/badge/nginx-1.11.3-brightgreen.svg) ![php 7.0.10](https://img.shields.io/badge/php--fpm-7.0.10-blue.svg) ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+[![Docker Hub; wyveo/nginx-php-fpm](https://img.shields.io/badge/docker%20hub-wyveo%2Fnginx--php--fpm-blue.svg)](https://hub.docker.com/r/wyveo/nginx-php-fpm/) [![](https://images.microbadger.com/badges/image/wyveo/nginx-php-fpm.svg)](http://microbadger.com/images/wyveo/nginx-php-fpm "Get your own image badge on microbadger.com") ![nginx 1.11.3](https://img.shields.io/badge/nginx-1.11.3-brightgreen.svg) ![php 7.0.10](https://img.shields.io/badge/php--fpm-7.0.10-blue.svg) ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 ## Introduction
 This is a Dockerfile to build a container image running nginx and php-fpm 7.
 ## Building from source
