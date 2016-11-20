@@ -1,3 +1,8 @@
+## [0.1.3] - 20-11-2016
+### Update
+- php to version 7.0.13 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+- nginx to version 1.11.6 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.1.2] - 18-11-2016
 ### Update
 - php to version 7.0.12
