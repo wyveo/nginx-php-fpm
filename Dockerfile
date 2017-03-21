@@ -4,12 +4,21 @@ MAINTAINER Colin Wilson "colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.11.10-1~jessie
+ENV NGINX_VERSION 1.11.11-1~jessie
 ENV php_conf /etc/php/7.0/fpm/php.ini
 ENV fpm_conf /etc/php/7.0/fpm/pool.d/www.conf
 
 # Install Basic Requirements
-RUN apt-get update && apt-get install --no-install-recommends -y wget curl nano zip unzip python-pip git
+RUN apt-get update && apt-get install --no-install-recommends -q -y \
+    wget \
+    apt-utils \
+    curl \
+    nano \
+    zip \
+    unzip \
+    python-pip \
+    git \
+    ca-certificates
 
 # Supervisor config
 RUN pip install supervisor supervisor-stdout
@@ -28,8 +37,7 @@ RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC64107
     && apt-get update
 
 # Install nginx
-RUN apt-get install --no-install-recommends --no-install-suggests -y \
-                        ca-certificates \
+RUN apt-get install --no-install-recommends --no-install-suggests -q -y \
                         nginx=${NGINX_VERSION}
 
 # Override nginx's default config
@@ -40,7 +48,8 @@ ADD ./default.conf /etc/nginx/conf.d/default.conf
 COPY html /usr/share/nginx/html
 
 # Install PHP
-RUN apt-get -y install php7.0-fpm php7.0-cli php7.0-dev php7.0-common \
+RUN apt-get install --no-install-recommends --no-install-suggests -q -y \
+    php7.0-fpm php7.0-cli php7.0-dev php7.0-common \
     php7.0-json php7.0-opcache php7.0-readline php7.0-mbstring php7.0-curl \
     php7.0-imagick php7.0-mcrypt php7.0-mysql php7.0-xml php7.0-redis
 
