@@ -1,3 +1,8 @@
+## [0.1.7] - 21-03-2017
+### Update
+- README.md update
+- nginx to version 1.11.11 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.1.6] - 15-03-2017
 ### Update
 - php package switched to [https://deb.sury.org/](https://deb.sury.org/)
