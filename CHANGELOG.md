@@ -1,3 +1,8 @@
+## [0.1.7] - 13-04-2017
+### Update
+- php version 7.0.18 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+- nginx to version 1.11.13 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.1.6] - 21-03-2017
 ### Update
 - Dockerfile reorganized
