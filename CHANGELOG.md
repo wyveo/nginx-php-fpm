@@ -1,3 +1,7 @@
+## [0.1.8] - 26-04-2017
+### Update
+- nginx to version 1.13.0 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.1.8] - 13-04-2017
 ### Update
 - php version 7.1.4 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
