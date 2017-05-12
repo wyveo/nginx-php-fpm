@@ -1,5 +1,6 @@
 ## [0.1.9] - 12-05-2017
 ### Update
+- php package repository switched to [https://deb.sury.org/](https://deb.sury.org/)
 - php version 7.0.19 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
 
 ## [0.1.8] - 26-04-2017

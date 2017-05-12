@@ -10,6 +10,8 @@ ENV fpm_conf /etc/php/7.0/fpm/pool.d/www.conf
 
 # Install Basic Requirements
 RUN apt-get update && apt-get install --no-install-recommends -q -y \
+    apt-transport-https \
+    lsb-release \
     wget \
     apt-utils \
     curl \
@@ -30,10 +32,8 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 # Add sources for latest nginx and php
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
     && echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
-    && echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
-    && echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
-    && wget https://www.dotdeb.org/dotdeb.gpg \
-    && apt-key add dotdeb.gpg \
+    && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
+    && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
     && apt-get update
 
 # Install nginx
