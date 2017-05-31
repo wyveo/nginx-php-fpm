@@ -1,3 +1,7 @@
+## [0.2.0] - 31-05-2017
+### Update
+- nginx to version 1.13.1 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.1.9] - 12-05-2017
 ### Update
 - php package repository switched to [https://deb.sury.org/](https://deb.sury.org/)
