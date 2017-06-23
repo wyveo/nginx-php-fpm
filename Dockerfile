@@ -1,10 +1,10 @@
-FROM debian:jessie
+FROM debian:stretch
 
 MAINTAINER Colin Wilson "colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.13.1-1~jessie
+ENV NGINX_VERSION 1.13.1-1~stretch
 ENV php_conf /etc/php/7.1/fpm/php.ini
 ENV fpm_conf /etc/php/7.1/fpm/pool.d/www.conf
 
@@ -15,15 +15,19 @@ RUN apt-get update \
     lsb-release \
     wget \
     apt-utils \
+    gnupg \
     curl \
     nano \
     zip \
     unzip \
     python-pip \
+    python-setuptools \
+    dirmngr \
     git \
     ca-certificates
 
 # Supervisor config
+RUN pip install wheel
 RUN pip install supervisor supervisor-stdout
 ADD ./supervisord.conf /etc/supervisord.conf
 
@@ -32,7 +36,7 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 
 # Add sources for latest nginx and php
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
-    && echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
+    && echo "deb http://nginx.org/packages/mainline/debian/ stretch nginx" >> /etc/apt/sources.list \
     && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
     && apt-get update
