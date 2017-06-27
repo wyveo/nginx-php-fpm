@@ -1,3 +1,7 @@
+## [0.2.4] - 27-06-2017
+### Update
+- nginx to version 1.13.2 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.2.3] - 23-06-2017
 ### Update
 - upgrade base image to debian stretch
