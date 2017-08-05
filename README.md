@@ -1,12 +1,12 @@
-[![Docker Hub; wyveo/nginx-php-fpm](https://img.shields.io/badge/docker%20hub-wyveo%2Fnginx--php--fpm-blue.svg)](https://hub.docker.com/r/wyveo/nginx-php-fpm/) [![](https://images.microbadger.com/badges/image/wyveo/nginx-php-fpm.svg)](http://microbadger.com/images/wyveo/nginx-php-fpm "Get your own image badge on microbadger.com") ![nginx 1.13.3](https://img.shields.io/badge/nginx-1.13.2-brightgreen.svg) ![php 7.1.7](https://img.shields.io/badge/php--fpm-7.1.7-blue.svg) ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+[![Docker Hub; wyveo/nginx-php-fpm](https://img.shields.io/badge/docker%20hub-wyveo%2Fnginx--php--fpm-blue.svg)](https://hub.docker.com/r/wyveo/nginx-php-fpm/) [![](https://images.microbadger.com/badges/image/wyveo/nginx-php-fpm.svg)](http://microbadger.com/images/wyveo/nginx-php-fpm "Get your own image badge on microbadger.com") ![nginx 1.13.3](https://img.shields.io/badge/nginx-1.13.2-brightgreen.svg) ![php 7.0.22](https://img.shields.io/badge/php--fpm-7.0.22-blue.svg) ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 ## Introduction
 This is a Dockerfile to build a debian based container image running nginx and php-fpm 7.1.x / 7.0.x
 
 ### Versioning
 | Docker Tag | GitHub Release | Nginx Version | PHP Version | Debian Version |
 |-----|-------|-----|--------|--------|
-| latest | master Branch |1.13.3 | 7.1.7 | stretch |
-| php70 | php70 Branch |1.13.3 | 7.0.21 | jessie |
+| latest | master Branch |1.13.3 | 7.1.8 | stretch |
+| php70 | php70 Branch |1.13.3 | 7.0.22 | jessie |
 ## Building from source
 To build from source you need to clone the git repo and run docker build:
 ```
