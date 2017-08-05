@@ -1,3 +1,7 @@
+## [0.2.7] - 04-08-2017
+### Update
+- php version 7.1.8 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
 ## [0.2.6] - 13-07-2017
 ### Update
 - nginx to version 1.13.3 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES) Security: CVE-2017-7529
