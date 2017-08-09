@@ -4,7 +4,7 @@ MAINTAINER Colin Wilson "colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.13.3-1~jessie
+ENV NGINX_VERSION 1.13.4-1~jessie
 ENV php_conf /etc/php/7.0/fpm/php.ini
 ENV fpm_conf /etc/php/7.0/fpm/pool.d/www.conf
 
