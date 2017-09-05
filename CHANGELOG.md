@@ -1,3 +1,8 @@
+## [0.2.9] - 05-09-2017
+### Update
+- nginx to version 1.13.5 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.1.9 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
 ## [0.2.8] - 09-08-2017
 ### Update
 - nginx to version 1.13.4 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
