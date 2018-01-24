@@ -4,7 +4,7 @@ MAINTAINER Colin Wilson "colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.13.7-1~stretch
+ENV NGINX_VERSION 1.13.8-1~stretch
 ENV php_conf /etc/php/7.2/fpm/php.ini
 ENV fpm_conf /etc/php/7.2/fpm/pool.d/www.conf
 
@@ -66,6 +66,9 @@ RUN apt-get update \
 
 # Supervisor config
 ADD ./supervisord.conf /etc/supervisord.conf
+
+# Create PHP pid & sock directory
+RUN mkdir -p /run/php
 
 # Override nginx's default config
 ADD ./default.conf /etc/nginx/conf.d/default.conf

@@ -1,3 +1,7 @@
+## [0.3.3] - 24-01-2018
+### Update
+- nginx to version 1.13.8 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.3.2] - 23-12-2017
 ### Update
 - nginx to version 1.13.7 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
