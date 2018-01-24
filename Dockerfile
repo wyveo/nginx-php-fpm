@@ -43,6 +43,7 @@ RUN apt-get update \
             php7.2-intl \
             php7.2-xml \
             php7.2-redis \
+    && mkdir -p /run/php \
     && pip install wheel \
     && pip install supervisor supervisor-stdout \
     && echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d \
@@ -66,9 +67,6 @@ RUN apt-get update \
 
 # Supervisor config
 ADD ./supervisord.conf /etc/supervisord.conf
-
-# Create PHP pid & sock directory
-RUN mkdir -p /run/php
 
 # Override nginx's default config
 ADD ./default.conf /etc/nginx/conf.d/default.conf
