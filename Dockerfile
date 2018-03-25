@@ -4,9 +4,9 @@ MAINTAINER Colin Wilson "colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.13.8-1~stretch
-ENV php_conf /etc/php/7.2/fpm/php.ini
-ENV fpm_conf /etc/php/7.2/fpm/pool.d/www.conf
+ENV NGINX_VERSION 1.13.10-1~stretch
+ENV php_conf /etc/php/7.1/fpm/php.ini
+ENV fpm_conf /etc/php/7.1/fpm/pool.d/www.conf
 
 # Install Basic Requirements
 RUN apt-get update \
@@ -26,23 +26,23 @@ RUN apt-get update \
             python-setuptools \
             git \
             nginx=${NGINX_VERSION} \
-            php7.2-fpm \
-            php7.2-cli \
-            php7.2-dev \
-            php7.2-common \
-            php7.2-json \
-            php7.2-opcache \
-            php7.2-readline \
-            php7.2-mbstring \
-            php7.2-curl \
-            php7.2-memcached \
-            php7.2-imagick \
-            php7.2-mysql \
-            php7.2-zip \
-            php7.2-pgsql \
-            php7.2-intl \
-            php7.2-xml \
-            php7.2-redis \
+            php7.1-fpm \
+            php7.1-cli \
+            php7.1-dev \
+            php7.1-common \
+            php7.1-json \
+            php7.1-opcache \
+            php7.1-readline \
+            php7.1-mbstring \
+            php7.1-curl \
+            php7.1-memcached \
+            php7.1-imagick \
+            php7.1-mysql \
+            php7.1-zip \
+            php7.1-pgsql \
+            php7.1-intl \
+            php7.1-xml \
+            php7.1-redis \
     && mkdir -p /run/php \
     && pip install wheel \
     && pip install supervisor supervisor-stdout \
@@ -53,7 +53,7 @@ RUN apt-get update \
     && sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" ${php_conf} \
     && sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" ${php_conf} \
     && sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g" ${php_conf} \
-    && sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.2/fpm/php-fpm.conf \
+    && sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.1/fpm/php-fpm.conf \
     && sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" ${fpm_conf} \
     && sed -i -e "s/pm.max_children = 5/pm.max_children = 4/g" ${fpm_conf} \
     && sed -i -e "s/pm.start_servers = 2/pm.start_servers = 3/g" ${fpm_conf} \
