@@ -1,3 +1,9 @@
+## [0.3.4] - 25-03-2018
+### Update
+- nginx to version 1.13.10 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- composer version 1.6.3 added [https://getcomposer.org/download/](https://getcomposer.org/download/)
+- php version 7.2.3 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
 ## [0.3.3] - 24-01-2018
 ### Update
 - nginx to version 1.13.8 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
