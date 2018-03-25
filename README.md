@@ -16,12 +16,6 @@ $ git clone https://github.com/wyveo/nginx-php-fpm.git
 
 followed by
 ```
-$ docker build -t nginx-php-fpm:latest . # PHP 7.1.x
-```
-
-
-or
-```
 $ docker build -t nginx-php-fpm:php70 . # PHP 7.0.x
 ```
 
