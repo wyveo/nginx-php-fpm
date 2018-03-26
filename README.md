@@ -22,7 +22,7 @@ $ docker build -t nginx-php-fpm:latest . # PHP 7.2.x
 
 or
 ```
-$ docker build -t nginx-php-fpm:php70 . # PHP 7.1.x
+$ docker build -t nginx-php-fpm:php71 . # PHP 7.1.x
 ```
 
 
