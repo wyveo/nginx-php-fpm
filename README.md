@@ -7,7 +7,7 @@ This is a Dockerfile to build a debian based container image running nginx and p
 |-----|-------|-----|--------|--------|
 | latest | master Branch |1.13.10 | 7.2.3 | stretch |
 | php71 | php71 Branch |1.13.10 | 7.1.15 | stretch |
-| php70 | php70 Branch |1.13.10 | 7.0.25 | stretch |
+| php70 | php70 Branch |1.13.10 | 7.0.28 | stretch |
 ## Building from source
 To build from source you need to clone the git repo and run docker build:
 ```
