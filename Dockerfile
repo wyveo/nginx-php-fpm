@@ -35,6 +35,7 @@ RUN apt-get update \
             php7.0-opcache \
             php7.0-readline \
             php7.0-mbstring \
+            php7.0-mcrypt \
             php7.0-curl \
             php7.0-memcached \
             php7.0-imagick \
