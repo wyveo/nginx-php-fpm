@@ -1,4 +1,9 @@
-## [0.3.0] - 03-11-2017
+## [0.3.1] - 08-04-2018
+### Update
+- nginx to version 1.13.11 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.0.29 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
+## [0.3.0] - 25-03-2018
 ### Update
 - os to Debian Stretch
 - nginx to version 1.13.10 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
