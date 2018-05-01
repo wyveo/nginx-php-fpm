@@ -1,3 +1,6 @@
+## [0.3.3] - 01-05-2018
+- README update: PHP version correction; PHP v7.0.30 not currently available in the deb.sury.org package
+
 ## [0.3.2] - 26-04-2018
 ### Update
 - nginx to version 1.13.12 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
