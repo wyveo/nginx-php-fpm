@@ -1,3 +1,6 @@
+## [0.0.4] - 01-05-2018
+- README update: PHP v7.1.17 not yet available in the deb.sury.org package
+
 ## [0.0.3] - 26-04-2018
 - nginx version 1.13.12 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.1.17 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
