@@ -1,3 +1,6 @@
+## [0.0.5] - 06-05-2018
+- [php version 7.1.17 available](https://github.com/oerdnj/deb.sury.org/issues/858#issuecomment-386828748)
+
 ## [0.0.4] - 01-05-2018
 - README update: PHP v7.1.17 not yet available in the deb.sury.org package
 
