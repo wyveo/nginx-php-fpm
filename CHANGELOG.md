@@ -1,4 +1,7 @@
-## [0.3.3] - 01-05-2018
+## [0.3.8] - 06-05-2018
+- [php version 7.2.5 available](https://github.com/oerdnj/deb.sury.org/issues/858#issuecomment-386828748)
+
+## [0.3.7] - 01-05-2018
 - README update: PHP version correction; PHP v7.2.5 not currently available in the deb.sury.org package
 
 ## [0.3.6] - 26-04-2018
