@@ -1,3 +1,6 @@
+## [0.3.4] - 06-05-2018
+- [php version 7.0.30 available](https://github.com/oerdnj/deb.sury.org/issues/858#issuecomment-386828748)
+
 ## [0.3.3] - 01-05-2018
 - README update: PHP version correction; PHP v7.0.30 not currently available in the deb.sury.org package
 
