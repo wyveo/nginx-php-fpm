@@ -1,3 +1,6 @@
+## [0.0.6] - 07-05-2018
+- composer version 1.6.5 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 ## [0.0.5] - 06-05-2018
 - [php version 7.1.17 available](https://github.com/oerdnj/deb.sury.org/issues/858#issuecomment-386828748)
 
