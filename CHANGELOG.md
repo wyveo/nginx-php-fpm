@@ -1,3 +1,7 @@
+## [0.0.7] - 12-06-2018
+- nginx version 1.15.0 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.1.18 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
 ## [0.0.6] - 07-05-2018
 - composer version 1.6.5 [https://getcomposer.org/download/](https://getcomposer.org/download/)
 
