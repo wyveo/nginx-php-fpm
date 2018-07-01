@@ -1,3 +1,7 @@
+## [0.4.2] - 01-07-2018
+### Update
+- add additional keyservers for retrieving nginx signing GPG key
+
 ## [0.4.1] - 26-06-2018
 ### Update
 - php version 7.2.7 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
