@@ -1,3 +1,6 @@
+## [0.0.8] - 04-07-2018
+- nginx version 1.15.1 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.0.7] - 12-06-2018
 - nginx version 1.15.0 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.1.18 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
