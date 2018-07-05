@@ -1,3 +1,6 @@
+## [0.0.9] - 04-07-2018
+- add additional keyservers for retrieving nginx signing GPG key
+
 ## [0.0.8] - 04-07-2018
 - nginx version 1.15.1 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 
