@@ -1,3 +1,7 @@
+## [0.3.7] - 04-07-2018
+### Update
+- nginx to version 1.15.1 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.3.6] - 12-06-2018
 ### Update
 - nginx to version 1.15.0 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
