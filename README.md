@@ -6,12 +6,14 @@ This is a Dockerfile to build a debian based container image running nginx and p
 | Docker Tag | GitHub Release | Nginx Version | PHP Version | Debian Version |
 |-----|-------|-----|--------|--------|
 | latest | master Branch |1.15.1 | 7.2.7 | stretch |
+| php72 | php72 Branch |1.15.1 | 7.2.7 | stretch |
 | php71 | php71 Branch |1.15.1 | 7.1.18 | stretch |
 | php70 | php70 Branch |1.15.1 | 7.0.30 | stretch |
 ## Building from source
 To build from source you need to clone the git repo and run docker build:
 ```
 $ git clone https://github.com/wyveo/nginx-php-fpm.git
+$ cd nginx-php-fpm
 ```
 
 followed by
