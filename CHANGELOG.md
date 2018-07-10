@@ -1,3 +1,7 @@
+## [0.4.4] - 10-07-2018
+### Update
+- Create PHP 7.2.x Branch
+
 ## [0.4.3] - 04-07-2018
 ### Update
 - nginx to version 1.15.1 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
