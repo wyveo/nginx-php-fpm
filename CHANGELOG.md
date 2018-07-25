@@ -1,3 +1,8 @@
+## [0.4.5] - 26-07-2018
+### Update
+- nginx to version 1.15.2 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.2.8 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
 ## [0.4.4] - 10-07-2018
 ### Update
 - Create PHP 7.2.x Branch
