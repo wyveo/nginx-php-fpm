@@ -1,3 +1,8 @@
+## [0.3.9] - 26-07-2018
+### Update
+- nginx to version 1.15.2 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.0.31 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
 ## [0.3.8] - 04-07-2018
 ### Update
 - add additional keyservers for retrieving nginx signing GPG key
