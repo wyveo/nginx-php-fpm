@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_VERSION 1.15.2-1~stretch
 ENV php_conf /etc/php/7.1/fpm/php.ini
 ENV fpm_conf /etc/php/7.1/fpm/pool.d/www.conf
-ENV COMPOSER_VERSION 1.6.5
+ENV COMPOSER_VERSION 1.7.1
 
 # Install Basic Requirements
 RUN apt-get update \
