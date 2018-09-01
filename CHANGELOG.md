@@ -1,3 +1,8 @@
+## [0.4.1] - 01-09-2018
+### Update
+- nginx to version 1.15.3 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- composer version 1.7.2 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 ## [0.4.0] - 08-08-2018
 - composer version 1.7.1 [https://getcomposer.org/download/](https://getcomposer.org/download/)
 
