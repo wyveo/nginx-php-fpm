@@ -1,3 +1,8 @@
+## [0.4.7] - 01-09-2018
+- nginx to version 1.15.3 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.2.9 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+- composer version 1.7.2 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 ## [0.4.6] - 08-08-2018
 - composer version 1.7.1 [https://getcomposer.org/download/](https://getcomposer.org/download/)
 
