@@ -1,3 +1,8 @@
+## [0.4.2] - 01-10-2018
+### Update
+- nginx to version 1.15.4 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.0.32 available - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
 ## [0.4.1] - 01-09-2018
 ### Update
 - nginx to version 1.15.3 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
