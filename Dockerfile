@@ -4,7 +4,7 @@ MAINTAINER Colin Wilson "colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.15.6-1~stretch
+ENV NGINX_VERSION 1.15.7-1~stretch
 ENV php_conf /etc/php/7.0/fpm/php.ini
 ENV fpm_conf /etc/php/7.0/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 1.7.3
@@ -16,6 +16,7 @@ RUN apt-get update \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
 	  found=''; \
 	  for server in \
+      hkp://ipv4.pool.sks-keyservers.net \
 		  ha.pool.sks-keyservers.net \
 		  hkp://keyserver.ubuntu.com:80 \
 		  hkp://p80.pool.sks-keyservers.net:80 \

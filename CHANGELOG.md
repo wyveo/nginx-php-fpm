@@ -1,3 +1,8 @@
+## [0.4.5] - 27-11-2018
+### Update
+- nginx to version 1.15.7 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- add keyserver
+
 ## [0.4.4] - 27-11-2018
 ### Update
 - nginx to version 1.15.6 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
