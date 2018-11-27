@@ -1,3 +1,10 @@
+## [0.1.5] - 27-11-2018
+- nginx version 1.15.6 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.1.24 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+- composer version 1.7.3 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+- add bcmath extension
+- logo update
+
 ## [0.1.4] - 03-11-2018
 - nginx version 1.15.5 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.1.23 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
