@@ -1,3 +1,7 @@
+## [0.5.1] - 27-11-2018
+- nginx version 1.15.7 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- add keyserver
+
 ## [0.5.0] - 27-11-2018
 - nginx version 1.15.6 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.2.12 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
