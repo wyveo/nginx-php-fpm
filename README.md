@@ -5,10 +5,10 @@ This is a Dockerfile to build a debian based container image running nginx and p
 ### Versioning
 | Docker Tag | GitHub Release | Nginx Version | PHP Version | Debian Version |
 |-----|-------|-----|--------|--------|
-| latest | master Branch |1.15.5 | 7.2.12 | stretch |
-| php72 | php72 Branch |1.15.5 | 7.2.12 | stretch |
-| php71 | php71 Branch |1.15.5 | 7.1.24 | stretch |
-| php70 | php70 Branch |1.15.5 | 7.0.32 | stretch |
+| latest | master Branch |1.15.6 | 7.2.12 | stretch |
+| php72 | php72 Branch |1.15.6 | 7.2.12 | stretch |
+| php71 | php71 Branch |1.15.6 | 7.1.24 | stretch |
+| php70 | php70 Branch |1.15.6 | 7.0.32 | stretch |
 ## Building from source
 To build from source you need to clone the git repo and run docker build:
 ```
