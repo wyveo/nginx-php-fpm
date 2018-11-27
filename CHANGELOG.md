@@ -1,3 +1,8 @@
+## [0.1.6] - 27-11-2018
+### Update
+- nginx version 1.15.7 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- fix for [cannot open '/dev/tty': No such device or address](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=913614)
+
 ## [0.1.5] - 27-11-2018
 - nginx version 1.15.6 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.1.24 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
