@@ -1,3 +1,10 @@
+## [0.4.4] - 27-11-2018
+### Update
+- nginx to version 1.15.6 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- composer version 1.7.3 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+- add bcmath extension
+- logo update
+
 ## [0.4.3] - 03-11-2018
 ### Update
 - nginx to version 1.15.5 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
