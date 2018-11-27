@@ -4,10 +4,10 @@ MAINTAINER Colin Wilson "colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.15.5-1~stretch
+ENV NGINX_VERSION 1.15.6-1~stretch
 ENV php_conf /etc/php/7.2/fpm/php.ini
 ENV fpm_conf /etc/php/7.2/fpm/pool.d/www.conf
-ENV COMPOSER_VERSION 1.7.2
+ENV COMPOSER_VERSION 1.7.3
 
 # Install Basic Requirements
 RUN apt-get update \
@@ -41,6 +41,7 @@ RUN apt-get update \
             nginx=${NGINX_VERSION} \
             php7.2-fpm \
             php7.2-cli \
+            php7.2-bcmath \
             php7.2-dev \
             php7.2-common \
             php7.2-json \
