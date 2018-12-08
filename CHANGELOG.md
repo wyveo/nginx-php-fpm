@@ -1,3 +1,6 @@
+## [0.5.3] - 08-12-2018
+- php version 7.3.0 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
 ## [0.5.2] - 27-11-2018
 ### Update
 - fix for [cannot open '/dev/tty': No such device or address](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=913614)

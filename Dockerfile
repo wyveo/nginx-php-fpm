@@ -5,8 +5,8 @@ MAINTAINER Colin Wilson "colin@wyveo.com"
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_VERSION 1.15.7-1~stretch
-ENV php_conf /etc/php/7.2/fpm/php.ini
-ENV fpm_conf /etc/php/7.2/fpm/pool.d/www.conf
+ENV php_conf /etc/php/7.3/fpm/php.ini
+ENV fpm_conf /etc/php/7.3/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 1.7.3
 
 # Install Basic Requirements
@@ -16,9 +16,9 @@ RUN apt-get update \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
 	  found=''; \
 	  for server in \
-      hkp://ipv4.pool.sks-keyservers.net \
 		  ha.pool.sks-keyservers.net \
 		  hkp://keyserver.ubuntu.com:80 \
+		  hkp://p80.pool.sks-keyservers.net:80 \
 		  pgp.mit.edu \
 	  ; do \
 		  echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
@@ -39,25 +39,24 @@ RUN apt-get update \
             python-setuptools \
             git \
             nginx=${NGINX_VERSION} \
-            php7.2-fpm \
-            php7.2-cli \
-            php7.2-bcmath \
-            php7.2-dev \
-            php7.2-common \
-            php7.2-json \
-            php7.2-opcache \
-            php7.2-readline \
-            php7.2-mbstring \
-            php7.2-curl \
-            php7.2-memcached \
-            php7.2-imagick \
-            php7.2-gd \
-            php7.2-mysql \
-            php7.2-zip \
-            php7.2-pgsql \
-            php7.2-intl \
-            php7.2-xml \
-            php7.2-redis \
+            php7.3-fpm \
+            php7.3-cli \
+            php7.3-bcmath \
+            php7.3-dev \
+            php7.3-common \
+            php7.3-json \
+            php7.3-opcache \
+            php7.3-readline \
+            php7.3-mbstring \
+            php7.3-curl \
+            php7.3-imagick \
+            php7.3-gd \
+            php7.3-mysql \
+            php7.3-zip \
+            php7.3-pgsql \
+            php7.3-intl \
+            php7.3-xml \
+            php7.3-redis \
     && mkdir -p /run/php \
     && pip install wheel \
     && pip install supervisor supervisor-stdout \
@@ -68,7 +67,7 @@ RUN apt-get update \
     && sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" ${php_conf} \
     && sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" ${php_conf} \
     && sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g" ${php_conf} \
-    && sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.2/fpm/php-fpm.conf \
+    && sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.3/fpm/php-fpm.conf \
     && sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" ${fpm_conf} \
     && sed -i -e "s/pm.max_children = 5/pm.max_children = 4/g" ${fpm_conf} \
     && sed -i -e "s/pm.start_servers = 2/pm.start_servers = 3/g" ${fpm_conf} \
