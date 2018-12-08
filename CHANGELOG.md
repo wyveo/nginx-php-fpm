@@ -1,3 +1,6 @@
+## [0.5.2] - 08-12-2018
+- php version 7.2.13 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
 ## [0.5.1] - 27-11-2018
 ### Update
 - nginx version 1.15.7 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
