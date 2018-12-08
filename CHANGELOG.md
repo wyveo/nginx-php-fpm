@@ -1,3 +1,7 @@
+## [0.4.7] - 08-12-2018
+### Update
+- README update
+
 ## [0.4.6] - 27-11-2018
 ### Update
 - fix for [cannot open '/dev/tty': No such device or address](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=913614)
