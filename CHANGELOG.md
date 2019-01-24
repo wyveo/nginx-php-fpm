@@ -1,3 +1,8 @@
+## [0.1.8] - 24-01-2019
+- nginx version 1.15.8 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.1.26 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+- composer version 1.8.0 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 ## [0.1.7] - 08-12-2018
 - php version 7.1.25 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
 
