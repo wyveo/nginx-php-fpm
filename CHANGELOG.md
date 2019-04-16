@@ -1,3 +1,8 @@
+## [0.4.9] - 16-04-2019
+### Update
+- nginx to version 1.15.11 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- composer version 1.8.5 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 ## [0.4.8] - 24-01-2019
 ### Update
 - nginx to version 1.15.8 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
