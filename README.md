@@ -7,7 +7,7 @@ This is a Dockerfile to build a debian based container image running nginx and p
 | Docker Tag | GitHub Release | Nginx Version | PHP Version | Debian Version |
 |-----|-------|-----|--------|--------|
 | latest | master Branch |1.15.11 | 7.3.4 | stretch |
-| php73 | php73 Branch |1.15.11 | 7.3. | stretch |
+| php73 | php73 Branch |1.15.11 | 7.3.4 | stretch |
 | php72 | php72 Branch |1.15.11 | 7.2.17 | stretch |
 | php71 | php71 Branch |1.15.11 | 7.1.28 | stretch |
 | php70 | php70 Branch |1.15.11 | 7.0.33 | stretch |
