@@ -1,3 +1,9 @@
+## [0.2.2] - 09-08-2019
+- debian to version buster - [https://hub.docker.com/_/debian/](https://hub.docker.com/_/debian/)
+- nginx version 1.17.2 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.1.31 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+- composer version 1.9.0 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 ## [0.2.1] - 09-05-2019
 - nginx version 1.15.12 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.1.29 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
