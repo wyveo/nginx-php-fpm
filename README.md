@@ -10,6 +10,8 @@ This is a Dockerfile to build a debian based container image running nginx and p
 | php72 | php72 Branch |1.17.2 | 7.2.21 | buster |
 | php71 | php71 Branch |1.17.2 | 7.1.31 | buster |
 | php70 | php70 Branch |1.17.2 | 7.0.33 | buster |
+
+
 ## Building from source
 To build from source you need to clone the git repo and run docker build:
 ```
