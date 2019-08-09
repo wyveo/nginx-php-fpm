@@ -1,13 +1,13 @@
-FROM debian:stretch
+FROM debian:buster
 
-MAINTAINER Colin Wilson "colin@wyveo.com"
+LABEL maintainer="Colin Wilson colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.15.12-1~stretch
+ENV NGINX_VERSION 1.17.2-1~buster
 ENV php_conf /etc/php/7.0/fpm/php.ini
 ENV fpm_conf /etc/php/7.0/fpm/pool.d/www.conf
-ENV COMPOSER_VERSION 1.8.5
+ENV COMPOSER_VERSION 1.9.0
 
 # Install Basic Requirements
 RUN apt-get update \
@@ -26,7 +26,7 @@ RUN apt-get update \
 		  apt-key adv --batch --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
 	  done; \
     test -z "$found" && echo >&2 "error: failed to fetch GPG key $NGINX_GPGKEY" && exit 1; \
-    echo "deb http://nginx.org/packages/mainline/debian/ stretch nginx" >> /etc/apt/sources.list \
+    echo "deb http://nginx.org/packages/mainline/debian/ buster nginx" >> /etc/apt/sources.list \
     && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
@@ -39,6 +39,15 @@ RUN apt-get update \
             python-pip \
             python-setuptools \
             git \
+            gcc \
+            make \
+            autoconf \
+            libc-dev \
+            zlib1g-dev \
+            libmemcached-dev \
+            libmemcached11 \
+            libmagickwand-dev \
+            pkg-config \
             nginx=${NGINX_VERSION} \
             php7.0-fpm \
             php7.0-cli \
@@ -51,15 +60,14 @@ RUN apt-get update \
             php7.0-mbstring \
             php7.0-mcrypt \
             php7.0-curl \
-            php7.0-memcached \
-            php7.0-imagick \
             php7.0-gd \
             php7.0-mysql \
             php7.0-zip \
             php7.0-pgsql \
             php7.0-intl \
             php7.0-xml \
-            php7.0-redis \
+            php-pear \
+    && pecl -d php_suffix=7.0 install -o -f redis \
     && mkdir -p /run/php \
     && pip install wheel \
     && pip install supervisor supervisor-stdout \
@@ -79,7 +87,11 @@ RUN apt-get update \
     && sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" ${fpm_conf} \
     && sed -i -e "s/www-data/nginx/g" ${fpm_conf} \
     && sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf} \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    &&  echo "extension=redis.so" > ${php_conf} \
+    &&  echo "extension=memcached.so" > ${php_conf} \
+    &&  echo "extension=imagick.so" > ${php_conf} \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    &&  rm -rf /tmp/pear
 
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
   && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
