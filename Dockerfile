@@ -10,8 +10,10 @@ ENV fpm_conf /etc/php/7.0/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 1.9.0
 
 # Install Basic Requirements
-RUN apt-get update \
-    && apt-get install --no-install-recommends --no-install-suggests -q -y gnupg2 dirmngr wget apt-transport-https lsb-release ca-certificates \
+RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
+    && set -x \
+    && apt-get update \
+    && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr wget apt-transport-https lsb-release ca-certificates \
     && \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
 	  found=''; \
@@ -32,22 +34,15 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -q -y \
             apt-utils \
-            curl \
             nano \
             zip \
             unzip \
             python-pip \
             python-setuptools \
             git \
-            gcc \
-            make \
-            autoconf \
-            libc-dev \
-            zlib1g-dev \
             libmemcached-dev \
             libmemcached11 \
             libmagickwand-dev \
-            pkg-config \
             nginx=${NGINX_VERSION} \
             php7.0-fpm \
             php7.0-cli \
@@ -87,16 +82,19 @@ RUN apt-get update \
     && sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" ${fpm_conf} \
     && sed -i -e "s/www-data/nginx/g" ${fpm_conf} \
     && sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf} \
-    &&  echo "extension=redis.so" > ${php_conf} \
-    &&  echo "extension=memcached.so" > ${php_conf} \
-    &&  echo "extension=imagick.so" > ${php_conf} \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* \
-    &&  rm -rf /tmp/pear
+    &&  echo "extension=redis.so" >> ${php_conf} \
+    &&  echo "extension=memcached.so" >> ${php_conf} \
+    &&  echo "extension=imagick.so" >> ${php_conf}
 
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
   && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
   && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" \
   && php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} && rm -rf /tmp/composer-setup.php
+
+# Clean up
+RUN rm -rf /tmp/pear \
+    && apt-get purge -y --auto-remove $buildDeps \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Supervisor config
 ADD ./supervisord.conf /etc/supervisord.conf
