@@ -1,3 +1,8 @@
+## [0.5.2] - 05-11-2019
+### Update
+- nginx to version 1.17.5 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- composer version 1.9.1 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 ## [0.5.1] - 09-08-2019
 ### Update
 - debian to version buster - [https://hub.docker.com/_/debian/](https://hub.docker.com/_/debian/)
