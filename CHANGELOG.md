@@ -1,3 +1,7 @@
+## [0.5.3] - 29-12-2019
+### Update
+- nginx to version 1.17.7 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.5.2] - 05-11-2019
 ### Update
 - nginx to version 1.17.5 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
