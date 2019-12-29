@@ -5,8 +5,8 @@ LABEL maintainer="Colin Wilson colin@wyveo.com"
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_VERSION 1.17.7-1~buster
-ENV php_conf /etc/php/7.3/fpm/php.ini
-ENV fpm_conf /etc/php/7.3/fpm/pool.d/www.conf
+ENV php_conf /etc/php/7.4/fpm/php.ini
+ENV fpm_conf /etc/php/7.4/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 1.9.1
 
 # Install Basic Requirements
@@ -43,24 +43,24 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             libmemcached11 \
             libmagickwand-dev \
             nginx=${NGINX_VERSION} \
-            php7.3-fpm \
-            php7.3-cli \
-            php7.3-bcmath \
-            php7.3-dev \
-            php7.3-common \
-            php7.3-json \
-            php7.3-opcache \
-            php7.3-readline \
-            php7.3-mbstring \
-            php7.3-curl \
-            php7.3-gd \
-            php7.3-mysql \
-            php7.3-zip \
-            php7.3-pgsql \
-            php7.3-intl \
-            php7.3-xml \
+            php7.4-fpm \
+            php7.4-cli \
+            php7.4-bcmath \
+            php7.4-dev \
+            php7.4-common \
+            php7.4-json \
+            php7.4-opcache \
+            php7.4-readline \
+            php7.4-mbstring \
+            php7.4-curl \
+            php7.4-gd \
+            php7.4-mysql \
+            php7.4-zip \
+            php7.4-pgsql \
+            php7.4-intl \
+            php7.4-xml \
             php-pear \
-    && pecl -d php_suffix=7.3 install -o -f redis memcached imagick \
+    && pecl -d php_suffix=7.4 install -o -f redis memcached imagick \
     && mkdir -p /run/php \
     && pip install wheel \
     && pip install supervisor supervisor-stdout \
@@ -71,7 +71,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" ${php_conf} \
     && sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" ${php_conf} \
     && sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g" ${php_conf} \
-    && sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.3/fpm/php-fpm.conf \
+    && sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.4/fpm/php-fpm.conf \
     && sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" ${fpm_conf} \
     && sed -i -e "s/pm.max_children = 5/pm.max_children = 4/g" ${fpm_conf} \
     && sed -i -e "s/pm.start_servers = 2/pm.start_servers = 3/g" ${fpm_conf} \
@@ -80,15 +80,15 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" ${fpm_conf} \
     && sed -i -e "s/www-data/nginx/g" ${fpm_conf} \
     && sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf} \
-    && echo "extension=redis.so" > /etc/php/7.3/mods-available/redis.ini \
-    && echo "extension=memcached.so" > /etc/php/7.3/mods-available/memcached.ini \
-    && echo "extension=imagick.so" > /etc/php/7.3/mods-available/imagick.ini \
-    && ln -sf /etc/php/7.3/mods-available/redis.ini /etc/php/7.3/fpm/conf.d/20-redis.ini \
-    && ln -sf /etc/php/7.3/mods-available/redis.ini /etc/php/7.3/cli/conf.d/20-redis.ini \
-    && ln -sf /etc/php/7.3/mods-available/memcached.ini /etc/php/7.3/fpm/conf.d/20-memcached.ini \
-    && ln -sf /etc/php/7.3/mods-available/memcached.ini /etc/php/7.3/cli/conf.d/20-memcached.ini \
-    && ln -sf /etc/php/7.3/mods-available/imagick.ini /etc/php/7.3/fpm/conf.d/20-imagick.ini \
-    && ln -sf /etc/php/7.3/mods-available/imagick.ini /etc/php/7.3/cli/conf.d/20-imagick.ini
+    && echo "extension=redis.so" > /etc/php/7.4/mods-available/redis.ini \
+    && echo "extension=memcached.so" > /etc/php/7.4/mods-available/memcached.ini \
+    && echo "extension=imagick.so" > /etc/php/7.4/mods-available/imagick.ini \
+    && ln -sf /etc/php/7.4/mods-available/redis.ini /etc/php/7.4/fpm/conf.d/20-redis.ini \
+    && ln -sf /etc/php/7.4/mods-available/redis.ini /etc/php/7.4/cli/conf.d/20-redis.ini \
+    && ln -sf /etc/php/7.4/mods-available/memcached.ini /etc/php/7.4/fpm/conf.d/20-memcached.ini \
+    && ln -sf /etc/php/7.4/mods-available/memcached.ini /etc/php/7.4/cli/conf.d/20-memcached.ini \
+    && ln -sf /etc/php/7.4/mods-available/imagick.ini /etc/php/7.4/fpm/conf.d/20-imagick.ini \
+    && ln -sf /etc/php/7.4/mods-available/imagick.ini /etc/php/7.4/cli/conf.d/20-imagick.ini
 
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
   && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
