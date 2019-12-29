@@ -1,3 +1,7 @@
+## [0.1.8] - 29-12-2019
+- nginx version 1.17.7 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.3.13 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+
 ## [0.1.7] - 05-11-2019
 - nginx version 1.17.5 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.3.11 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
