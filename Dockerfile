@@ -4,10 +4,10 @@ LABEL maintainer="Colin Wilson colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.17.9-1~buster
+ENV NGINX_VERSION 1.19.0-1~buster
 ENV php_conf /etc/php/7.4/fpm/php.ini
 ENV fpm_conf /etc/php/7.4/fpm/pool.d/www.conf
-ENV COMPOSER_VERSION 1.9.3
+ENV COMPOSER_VERSION 1.10.7
 
 # Install Basic Requirements
 RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
@@ -16,22 +16,23 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr wget apt-transport-https lsb-release ca-certificates \
     && \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
-	  found=''; \
-	  for server in \
-		  ha.pool.sks-keyservers.net \
-		  hkp://keyserver.ubuntu.com:80 \
-		  hkp://p80.pool.sks-keyservers.net:80 \
-		  pgp.mit.edu \
-	  ; do \
-		  echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
-		  apt-key adv --batch --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
-	  done; \
+      found=''; \
+      for server in \
+          ha.pool.sks-keyservers.net \
+          hkp://keyserver.ubuntu.com:80 \
+          hkp://p80.pool.sks-keyservers.net:80 \
+          pgp.mit.edu \
+      ; do \
+          echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
+          apt-key adv --batch --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
+      done; \
     test -z "$found" && echo >&2 "error: failed to fetch GPG key $NGINX_GPGKEY" && exit 1; \
     echo "deb http://nginx.org/packages/mainline/debian/ buster nginx" >> /etc/apt/sources.list \
     && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -q -y \
+            locales \
             apt-utils \
             nano \
             zip \
@@ -89,16 +90,17 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && ln -sf /etc/php/7.4/mods-available/memcached.ini /etc/php/7.4/cli/conf.d/20-memcached.ini \
     && ln -sf /etc/php/7.4/mods-available/imagick.ini /etc/php/7.4/fpm/conf.d/20-imagick.ini \
     && ln -sf /etc/php/7.4/mods-available/imagick.ini /etc/php/7.4/cli/conf.d/20-imagick.ini
-
-RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
-  && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
-  && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" \
-  && php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} && rm -rf /tmp/composer-setup.php
-
-# Clean up
-RUN rm -rf /tmp/pear \
+    && curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
+    && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
+    && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" \
+    && php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
+    && rm -rf /tmp/composer-setup.php \
+    && rm -rf /tmp/pear \
     && apt-get purge -y --auto-remove $buildDeps \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/* \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 # Supervisor config
 ADD ./supervisord.conf /etc/supervisord.conf
