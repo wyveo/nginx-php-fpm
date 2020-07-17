@@ -1,3 +1,8 @@
+## [0.6.2] - 18-07-2020
+- nginx version 1.19.1 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.2.32 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+- composer version 1.10.9 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 ## [0.6.1] - 11-03-2020
 - nginx version 1.17.9 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.2.28 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
