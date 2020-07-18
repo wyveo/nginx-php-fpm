@@ -54,13 +54,14 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php7.2-mbstring \
             php7.2-curl \
             php7.2-gd \
+            php7.2-imagick \
             php7.2-mysql \
             php7.2-zip \
             php7.2-pgsql \
             php7.2-intl \
             php7.2-xml \
             php-pear \
-    && pecl -d php_suffix=7.2 install -o -f redis memcached imagick \
+    && pecl -d php_suffix=7.2 install -o -f redis memcached \
     && mkdir -p /run/php \
     && pip install wheel \
     && pip install supervisor supervisor-stdout \
@@ -82,13 +83,10 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf} \
     && echo "extension=redis.so" > /etc/php/7.2/mods-available/redis.ini \
     && echo "extension=memcached.so" > /etc/php/7.2/mods-available/memcached.ini \
-    && echo "extension=imagick.so" > /etc/php/7.2/mods-available/imagick.ini \
     && ln -sf /etc/php/7.2/mods-available/redis.ini /etc/php/7.2/fpm/conf.d/20-redis.ini \
     && ln -sf /etc/php/7.2/mods-available/redis.ini /etc/php/7.2/cli/conf.d/20-redis.ini \
     && ln -sf /etc/php/7.2/mods-available/memcached.ini /etc/php/7.2/fpm/conf.d/20-memcached.ini \
     && ln -sf /etc/php/7.2/mods-available/memcached.ini /etc/php/7.2/cli/conf.d/20-memcached.ini \
-    && ln -sf /etc/php/7.2/mods-available/imagick.ini /etc/php/7.2/fpm/conf.d/20-imagick.ini \
-    && ln -sf /etc/php/7.2/mods-available/imagick.ini /etc/php/7.2/cli/conf.d/20-imagick.ini \
     # Install Composer
     && curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
     && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
