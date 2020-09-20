@@ -1,3 +1,8 @@
+## [0.2.2] - 20-09-2020
+- php version 7.3.22 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+- README update
+- Add 'Loaded Config' to index.php
+
 ## [0.2.1] - 05-09-2020
 - nginx version 1.19.2 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.3.21 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
