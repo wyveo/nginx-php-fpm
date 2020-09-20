@@ -1,3 +1,8 @@
+## [0.5.7] - 20-09-2020
+### Update
+- README update
+- Add 'Loaded Config' to index.php
+
 ## [0.5.6] - 05-09-2020
 ### Update
 - nginx to version 1.19.2 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
