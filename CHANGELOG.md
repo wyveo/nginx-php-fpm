@@ -1,3 +1,7 @@
+## [0.2.8] - 20-09-2020
+- README update
+- Add 'Loaded Config' to index.php
+
 ## [0.2.7] - 05-09-2020
 - nginx version 1.19.2 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - composer version 1.10.10 [https://getcomposer.org/download/](https://getcomposer.org/download/)
