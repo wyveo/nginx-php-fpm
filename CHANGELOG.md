@@ -1,3 +1,8 @@
+## [0.2.4] - 02-12-2020
+- nginx version 1.19.5 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.3.25 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+- composer version 1.10.17 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 ## [0.2.3] - 15-10-2020
 - nginx version 1.19.3 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.3.23 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
