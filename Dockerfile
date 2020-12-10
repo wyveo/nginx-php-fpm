@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_VERSION 1.19.5-1~buster
 ENV php_conf /etc/php/8.0/fpm/php.ini
 ENV fpm_conf /etc/php/8.0/fpm/pool.d/www.conf
-ENV COMPOSER_VERSION 2.0.7
+ENV COMPOSER_VERSION 2.0.8
 
 # Install Basic Requirements
 RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
@@ -53,7 +53,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php8.0-mbstring \
             php8.0-curl \
             php8.0-gd \
-            #php8.0-imagick \
+            php8.0-imagick \
             php8.0-mysql \
             php8.0-zip \
             php8.0-pgsql \
@@ -61,15 +61,6 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php8.0-xml \
             php-pear \
     && pecl -d php_suffix=8.0 install -o -f redis memcached \
-    # && git clone https://github.com/Imagick/imagick \
-    # && cd imagick \
-    # && phpize \
-    # && ./configure \
-    # && make \
-    # && chmod 0644 modules/imagick.so \
-    # && mv modules/imagick.so /usr/lib/php/2020*/ \
-    # && cd .. \
-    # && apt-mark manual libmagickwand-6.q16-6 \
     && mkdir -p /run/php \
     && pip install wheel \
     && pip install supervisor supervisor-stdout \
@@ -91,13 +82,13 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf} \
     && echo "extension=redis.so" > /etc/php/8.0/mods-available/redis.ini \
     && echo "extension=memcached.so" > /etc/php/8.0/mods-available/memcached.ini \
-    #&& echo "extension=imagick.so" > /etc/php/8.0/mods-available/imagick.ini \
+    && echo "extension=imagick.so" > /etc/php/8.0/mods-available/imagick.ini \
     && ln -sf /etc/php/8.0/mods-available/redis.ini /etc/php/8.0/fpm/conf.d/20-redis.ini \
     && ln -sf /etc/php/8.0/mods-available/redis.ini /etc/php/8.0/cli/conf.d/20-redis.ini \
     && ln -sf /etc/php/8.0/mods-available/memcached.ini /etc/php/8.0/fpm/conf.d/20-memcached.ini \
     && ln -sf /etc/php/8.0/mods-available/memcached.ini /etc/php/8.0/cli/conf.d/20-memcached.ini \
-    #&& ln -sf /etc/php/8.0/mods-available/imagick.ini /etc/php/8.0/fpm/conf.d/20-imagick.ini \
-    #&& ln -sf /etc/php/8.0/mods-available/imagick.ini /etc/php/8.0/cli/conf.d/20-imagick.ini \
+    && ln -sf /etc/php/8.0/mods-available/imagick.ini /etc/php/8.0/fpm/conf.d/20-imagick.ini \
+    && ln -sf /etc/php/8.0/mods-available/imagick.ini /etc/php/8.0/cli/conf.d/20-imagick.ini \
     # Install Composer
     && curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
     && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
