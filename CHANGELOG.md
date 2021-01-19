@@ -1,3 +1,7 @@
+## [0.6.9] - 19-01-2021
+- php version 8.0.1 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-8.php)
+- nginx version 1.19.6 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+
 ## [0.6.8] - 10-12-2020
 - add php8.0 imagick extension
 - composer version 2.0.8 [https://getcomposer.org/download/](https://getcomposer.org/download/)
