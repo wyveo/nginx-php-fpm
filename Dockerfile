@@ -109,7 +109,7 @@ COPY ./default.conf /etc/nginx/conf.d/default.conf
 # Override default nginx welcome page
 COPY html /usr/share/nginx/html
 
-# COPY Scripts
+# Copy Scripts
 COPY ./start.sh /start.sh
 
 EXPOSE 80
