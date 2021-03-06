@@ -1,3 +1,8 @@
+## [0.6.1] - 06-03-2021
+### Update
+- nginx to version 1.19.7 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- composer version 1.10.20 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
 ## [0.6.0] - 19-01-2021
 ### Update
 - nginx to version 1.19.6 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
