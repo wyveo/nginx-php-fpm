@@ -23,7 +23,7 @@ $ cd nginx-php-fpm
 
 followed by
 ```
-$ docker build -t nginx-php-fpm:php71 . # PHP 7.1.x
+$ docker build -t nginx-php-fpm:php74 . # PHP 7.4.x
 ```
 
 ## Pulling from Docker Hub
