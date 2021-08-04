@@ -59,6 +59,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php8.0-pgsql \
             php8.0-intl \
             php8.0-xml \
+	    php8.0-apcu \
             php-pear \
     && pecl -d php_suffix=8.0 install -o -f redis memcached \
     && mkdir -p /run/php \
