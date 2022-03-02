@@ -4,7 +4,7 @@ LABEL maintainer="Colin Wilson colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.19.10-1~buster
+ENV NGINX_VERSION 1.21.6-1~buster
 ENV php_conf /etc/php/8.0/fpm/php.ini
 ENV fpm_conf /etc/php/8.0/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 2.0.13
