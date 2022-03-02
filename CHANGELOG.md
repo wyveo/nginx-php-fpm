@@ -1,8 +1,17 @@
+## [0.2.0] - 02-03-2022
+### Update
+- nginx to version 1.21.6 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 7.4.28 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
+- composer version 2.0.13 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+- Add GitHub actions for image publishing to Docker Hub
+- README update
+- LICENSE update
+
 ## [0.1.9] - 18-05-2021
 - nginx version 1.19.10 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.4.18 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
 - composer version 1.10.22 [https://getcomposer.org/download/](https://getcomposer.org/download/)
--
+
 ## [0.1.8] - 06-03-2021
 - nginx version 1.19.7 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 7.4.16 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-7.php)
