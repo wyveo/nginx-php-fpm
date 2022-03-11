@@ -2,7 +2,7 @@ name: Update Docker Hub Description
 on:
   push:
     branches:
-      - php80
+      - php81
     paths:
       - README.md
       - .github/workflows/dockerhub-description.yaml
