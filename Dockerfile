@@ -1,13 +1,13 @@
-FROM debian:buster
+FROM debian:bullseye-slim
 
 LABEL maintainer="Colin Wilson colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.21.6-1~buster
-ENV php_conf /etc/php/8.0/fpm/php.ini
-ENV fpm_conf /etc/php/8.0/fpm/pool.d/www.conf
-ENV COMPOSER_VERSION 2.0.13
+ENV NGINX_VERSION 1.21.6-1~bullseye
+ENV php_conf /etc/php/8.1/fpm/php.ini
+ENV fpm_conf /etc/php/8.1/fpm/pool.d/www.conf
+ENV COMPOSER_VERSION 2.2.7
 
 # Install Basic Requirements
 RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
@@ -16,18 +16,18 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr wget apt-transport-https lsb-release ca-certificates \
     && \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
-	  found=''; \
-	  for server in \
-		  ha.pool.sks-keyservers.net \
-		  hkp://keyserver.ubuntu.com:80 \
-		  hkp://p80.pool.sks-keyservers.net:80 \
-		  pgp.mit.edu \
-	  ; do \
-		  echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
-		  apt-key adv --batch --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
-	  done; \
+          found=''; \
+          for server in \
+                  ha.pool.sks-keyservers.net \
+                  hkp://keyserver.ubuntu.com:80 \
+                  hkp://p80.pool.sks-keyservers.net:80 \
+                  pgp.mit.edu \
+          ; do \
+                  echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
+                  apt-key adv --batch --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
+          done; \
     test -z "$found" && echo >&2 "error: failed to fetch GPG key $NGINX_GPGKEY" && exit 1; \
-    echo "deb http://nginx.org/packages/mainline/debian/ buster nginx" >> /etc/apt/sources.list \
+    echo "deb http://nginx.org/packages/mainline/debian/ bullseye nginx" >> /etc/apt/sources.list \
     && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
@@ -36,34 +36,35 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             nano \
             zip \
             unzip \
-            python-pip \
+            python3-pip \
             python-setuptools \
             git \
             libmemcached-dev \
             libmemcached11 \
             libmagickwand-dev \
             nginx=${NGINX_VERSION} \
-            php8.0-fpm \
-            php8.0-cli \
-            php8.0-bcmath \
-            php8.0-dev \
-            php8.0-common \
-            php8.0-opcache \
-            php8.0-readline \
-            php8.0-mbstring \
-            php8.0-curl \
-            php8.0-gd \
-            php8.0-imagick \
-            php8.0-mysql \
-            php8.0-zip \
-            php8.0-pgsql \
-            php8.0-intl \
-            php8.0-xml \
+            php8.1-fpm \
+            php8.1-cli \
+            php8.1-bcmath \
+            php8.1-dev \
+            php8.1-common \
+            php8.1-opcache \
+            php8.1-readline \
+            php8.1-mbstring \
+            php8.1-curl \
+            php8.1-gd \
+            php8.1-imagick \
+            php8.1-mysql \
+            php8.1-zip \
+            php8.1-pgsql \
+            php8.1-intl \
+            php8.1-xml \
             php-pear \
-    && pecl -d php_suffix=8.0 install -o -f redis memcached \
+    && pecl -d php_suffix=8.1 install -o -f redis memcached \
     && mkdir -p /run/php \
     && pip install wheel \
-    && pip install supervisor supervisor-stdout \
+    && pip install supervisor \
+    && pip install git+https://github.com/coderanger/supervisor-stdout \
     && echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d \
     && rm -rf /etc/nginx/conf.d/default.conf \
     && sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" ${php_conf} \
@@ -71,7 +72,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" ${php_conf} \
     && sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" ${php_conf} \
     && sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g" ${php_conf} \
-    && sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/8.0/fpm/php-fpm.conf \
+    && sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/8.1/fpm/php-fpm.conf \
     && sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" ${fpm_conf} \
     && sed -i -e "s/pm.max_children = 5/pm.max_children = 4/g" ${fpm_conf} \
     && sed -i -e "s/pm.start_servers = 2/pm.start_servers = 3/g" ${fpm_conf} \
@@ -80,15 +81,15 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" ${fpm_conf} \
     && sed -i -e "s/www-data/nginx/g" ${fpm_conf} \
     && sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf} \
-    && echo "extension=redis.so" > /etc/php/8.0/mods-available/redis.ini \
-    && echo "extension=memcached.so" > /etc/php/8.0/mods-available/memcached.ini \
-    && echo "extension=imagick.so" > /etc/php/8.0/mods-available/imagick.ini \
-    && ln -sf /etc/php/8.0/mods-available/redis.ini /etc/php/8.0/fpm/conf.d/20-redis.ini \
-    && ln -sf /etc/php/8.0/mods-available/redis.ini /etc/php/8.0/cli/conf.d/20-redis.ini \
-    && ln -sf /etc/php/8.0/mods-available/memcached.ini /etc/php/8.0/fpm/conf.d/20-memcached.ini \
-    && ln -sf /etc/php/8.0/mods-available/memcached.ini /etc/php/8.0/cli/conf.d/20-memcached.ini \
-    && ln -sf /etc/php/8.0/mods-available/imagick.ini /etc/php/8.0/fpm/conf.d/20-imagick.ini \
-    && ln -sf /etc/php/8.0/mods-available/imagick.ini /etc/php/8.0/cli/conf.d/20-imagick.ini \
+    && echo "extension=redis.so" > /etc/php/8.1/mods-available/redis.ini \
+    && echo "extension=memcached.so" > /etc/php/8.1/mods-available/memcached.ini \
+    && echo "extension=imagick.so" > /etc/php/8.1/mods-available/imagick.ini \
+    && ln -sf /etc/php/8.1/mods-available/redis.ini /etc/php/8.1/fpm/conf.d/20-redis.ini \
+    && ln -sf /etc/php/8.1/mods-available/redis.ini /etc/php/8.1/cli/conf.d/20-redis.ini \
+    && ln -sf /etc/php/8.1/mods-available/memcached.ini /etc/php/8.1/fpm/conf.d/20-memcached.ini \
+    && ln -sf /etc/php/8.1/mods-available/memcached.ini /etc/php/8.1/cli/conf.d/20-memcached.ini \
+    && ln -sf /etc/php/8.1/mods-available/imagick.ini /etc/php/8.1/fpm/conf.d/20-imagick.ini \
+    && ln -sf /etc/php/8.1/mods-available/imagick.ini /etc/php/8.1/cli/conf.d/20-imagick.ini \
     # Install Composer
     && curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
     && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \

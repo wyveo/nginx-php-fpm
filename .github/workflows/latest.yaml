@@ -1,4 +1,4 @@
-name: Publish PHP 8.0 image to Docker Hub
+name: Publish PHP 8.1 image to Docker Hub
 on:
   push:
 jobs:
