@@ -24,28 +24,32 @@ This is a Dockerfile to build a debian based container image running nginx and p
 ## Building from source
 To build from source you need to clone the git repo and run docker build:
 ```
-$ git clone https://github.com/wyveo/nginx-php-fpm.git
+$ git clone https://github.com/Partavate-Studios/nginx-php-fpm.git
 $ cd nginx-php-fpm
 ```
 
 followed by
 ```
-$ docker build -t nginx-php-fpm:php81 . # PHP 8.1.x
+$ docker build -t nginx-php-fpm:php81 -t registry.gitlab.com/partavate/infrastructure/nginx-php-fpm:php81 . . # PHP 8.1.x
+$ docker push registry.gitlab.com/partavate/infrastructure/nginx-php-fpm:php81
 ```
 
 
-## Pulling from Docker Hub
+## Pulling from GitLab Registry
 ```
-$ docker pull wyveo/nginx-php-fpm:php81
+$ docker login registry.gitlab.com
+$ docker pull registry.gitlab.com/partavate/infrastructure/nginx-php-fpm:php81
 ```
 
 ## Running
 To run the container:
 ```
-$ sudo docker run -d wyveo/nginx-php-fpm:php81
+$ sudo docker run -d registry.gitlab.com/partavate/infrastructure/nginx-php-fpm:php81
 ```
 
 Default web root:
 ```
 /usr/share/nginx/html
 ```
+
+Note that applications using this image should configure Nginx to use the standard web root of `/var/www/public`.
