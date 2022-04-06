@@ -4,7 +4,11 @@
 
 `Partavate-Studios/nginx-php-fpm` was forked from [`wyveo/nginx-php-fpm`](https://github.com/wyveo/nginx-php-fpm) on 2022.04.06.
 
-This only adds the `php8.1-gmp` package, (GNU Multiple Precision) which is required for working with 256-bit EVM integers.
+This fork contains the following changes:
+
+* Adds the `php8.1-gmp` Apt package, (GNU Multiple Precision) which is required for working with 256-bit EVM integers.
+* Configures PHP-FPM to log to `stderr`, for use of Kubernetes native logging.
+* Supervisord's invocation of `php-fpm` uses `/etc/php/8.1/fpm/php-fpm.conf` as its config (The original default, which still includes `pool.d/www.conf`)
 
 ## Introduction
 This is a Dockerfile to build a debian based container image running nginx and php-fpm 8.1.x / 8.0.x / 7.4.x / 7.3.x / 7.2.x / 7.1.x / 7.0.x & Composer.
@@ -22,6 +26,9 @@ This is a Dockerfile to build a debian based container image running nginx and p
 | php70 | php70 Branch |1.21.6 | 7.0.33 | buster | 2.0.13 |
 
 ## Building from source
+
+(Version PHP 8.1)
+
 To build from source you need to clone the git repo and run docker build:
 ```
 $ git clone https://github.com/Partavate-Studios/nginx-php-fpm.git
@@ -30,7 +37,7 @@ $ cd nginx-php-fpm
 
 followed by
 ```
-$ docker build -t nginx-php-fpm:php81 -t registry.gitlab.com/partavate/infrastructure/nginx-php-fpm:php81 . . # PHP 8.1.x
+$ docker build -t nginx-php-fpm:php81 -t registry.gitlab.com/partavate/infrastructure/nginx-php-fpm:php81 .
 $ docker push registry.gitlab.com/partavate/infrastructure/nginx-php-fpm:php81
 ```
 
@@ -47,9 +54,6 @@ To run the container:
 $ sudo docker run -d registry.gitlab.com/partavate/infrastructure/nginx-php-fpm:php81
 ```
 
-Default web root:
-```
-/usr/share/nginx/html
-```
+The Nginx package's pre-installed document_root is `/usr/share/nginx/html`. 
 
-Note that applications using this image should configure Nginx to use the standard web root of `/var/www/public`.
+However web applications using this base image should configure Nginx to use the document_root of `/var/www/public`.

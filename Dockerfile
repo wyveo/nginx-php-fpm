@@ -1,11 +1,13 @@
 FROM debian:bullseye-slim
 
-LABEL maintainer="Colin Wilson colin@wyveo.com"
+LABEL maintainer="Arthur Kepler kepler@partavate.com"
+# Based on wyveo/nginx-php-fpm, license MIT
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_VERSION 1.21.6-1~bullseye
 ENV php_conf /etc/php/8.1/fpm/php.ini
+ENV fpm_global_conf /etc/php/8.1/fpm/php-fpm.conf
 ENV fpm_conf /etc/php/8.1/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 2.2.7
 
@@ -52,6 +54,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php8.1-readline \
             php8.1-mbstring \
             php8.1-curl \
+            php8.1-gmp \
             php8.1-gd \
             php8.1-imagick \
             php8.1-mysql \
@@ -72,7 +75,9 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" ${php_conf} \
     && sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" ${php_conf} \
     && sed -i -e "s/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g" ${php_conf} \
-    && sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/8.1/fpm/php-fpm.conf \
+    && sed -i -e "s/;error_log\s*=\s*syslog/error_log = \/proc\/self\/fd\/2/g" ${php_conf} \
+    && sed -i -e "s/;*\s*error_log\s*=.*/error_log = \/proc\/self\/fd\/2/g" ${fpm_global_conf} \
+    && sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" ${fpm_global_conf} \
     && sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" ${fpm_conf} \
     && sed -i -e "s/pm.max_children = 5/pm.max_children = 4/g" ${fpm_conf} \
     && sed -i -e "s/pm.start_servers = 2/pm.start_servers = 3/g" ${fpm_conf} \
