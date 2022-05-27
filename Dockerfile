@@ -43,25 +43,6 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             libmemcached11 \
             libmagickwand-dev \
             nginx=${NGINX_VERSION} \
-<<<<<<< HEAD
-            php8.0-fpm \
-            php8.0-cli \
-            php8.0-bcmath \
-            php8.0-dev \
-            php8.0-common \
-            php8.0-opcache \
-            php8.0-readline \
-            php8.0-mbstring \
-            php8.0-curl \
-            php8.0-gd \
-            php8.0-imagick \
-            php8.0-mysql \
-            php8.0-zip \
-            php8.0-pgsql \
-            php8.0-intl \
-            php8.0-xml \
-	    php8.0-ldap \
-=======
             php8.1-fpm \
             php8.1-cli \
             php8.1-bcmath \
@@ -78,7 +59,6 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php8.1-pgsql \
             php8.1-intl \
             php8.1-xml \
->>>>>>> upstream/master
             php-pear \
     && pecl -d php_suffix=8.1 install -o -f redis memcached \
     && mkdir -p /run/php \
