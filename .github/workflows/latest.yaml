@@ -18,6 +18,6 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build . --tag ghcr.io/LordMrcS/nginx-php-fpm:latest
-        docker run ghcr.io/LordMrcS/nginx-php-fpm:latest
-        docker push ghcr.io/LordMrcS/nginx-php-fpm:latest
+        docker build . --tag ghcr.io/lordmrcs/nginx-php-fpm-1:latest
+        docker run ghcr.io/lordmrcs/nginx-php-fpm-1:latest
+        docker push ghcr.io/lordmrcs/nginx-php-fpm-1:latest
