@@ -9,7 +9,7 @@ jobs:
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: wyveo/nginx-php-fpm
+        name: ${{ secrets.DOCKER_USERNAME }}/nginx-php-fpm-ldap
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         tags: "latest"
