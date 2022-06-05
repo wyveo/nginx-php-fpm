@@ -1,23 +1,15 @@
-name: publish
-
-on: [push]
-
+name: Publish PHP 8.1 image to Docker Hub
+on:
+  push:
 jobs:
-  publish-on-github:
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v1
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Build Docker image
-      run: |
-        docker build . --tag ghcr.io/LordMrcS/nginx-php-fpm:latest
-        docker run ghcr.io/LordMrcS/nginx-php-fpm:latest
-        docker push ghcr.io/LordMrcS/nginx-php-fpm:latest
+        name: wyveo/nginx-php-fpm
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        tags: "latest"
