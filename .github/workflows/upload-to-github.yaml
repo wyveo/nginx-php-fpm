@@ -1,4 +1,4 @@
-name: Publish PHP 8.1 image to Docker Hub
+name: Publish image to Docker Hub
 on:
   push:
 jobs:
@@ -6,10 +6,17 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
+    - name: Set branch-based environment variables
+      uses: iamtheyammer/branch-env-vars@...
+      with:
+        TAG: |
+          master:latest
+          php81:php81
+          php74:php74
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: ${{ secrets.DOCKER_USERNAME }}/nginx-php-fpm-ldap
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        tags: "latest"
+        tags: ${{ env.TAG }}
