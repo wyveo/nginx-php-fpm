@@ -8,12 +8,8 @@ This is a Dockerfile to build a debian based container image running nginx and p
 |-----|-------|-----|--------|--------|------|
 | latest | master Branch |1.23.1 | 8.1.9 | bullseye | 2.2.8 |
 | php81 | php81 Branch |1.21.6 | 8.1.3 | bullseye | 2.2.7 |
-| php80 | php80 Branch |1.21.6 | 8.0.16 | buster | 2.0.13 |
 | php74 | php74 Branch |1.21.6 | 7.4.28 | buster | 2.0.13 |
-| php73 | php73 Branch |1.21.6 | 7.3.33 | buster | 2.0.13 |
-| php72 | php72 Branch |1.21.6 | 7.2.34 | buster | 2.0.13 |
-| php71 | php71 Branch |1.21.6 | 7.1.33 | buster | 2.0.13 |
-| php70 | php70 Branch |1.21.6 | 7.0.33 | buster | 2.0.13 |
+
 
 ## Building from source
 To build from source you need to clone the git repo and run docker build:
