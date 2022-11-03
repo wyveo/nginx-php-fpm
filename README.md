@@ -14,7 +14,7 @@ This is a Dockerfile to build a debian based container image running nginx and p
 ## Building from source
 To build from source you need to clone the git repo and run docker build:
 ```
-$ git clone https://github.com/wyveo/nginx-php-fpm.git
+$ git clone https://github.com/LordMrcS/nginx-php-fpm.git
 $ cd nginx-php-fpm
 ```
 
@@ -26,13 +26,13 @@ $ docker build -t nginx-php-fpm:php81 . # PHP 8.1.x
 
 ## Pulling from Docker Hub
 ```
-$ docker pull wyveo/nginx-php-fpm:php81
+$ docker pull ghcr.io/lordmrcs/nginx-php-fpm:master
 ```
 
 ## Running
 To run the container:
 ```
-$ sudo docker run -d wyveo/nginx-php-fpm:php81
+$ sudo docker run -d ghcr.io/lordmrcs/nginx-php-fpm:master
 ```
 
 Default web root:
