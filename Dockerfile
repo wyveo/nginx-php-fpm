@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV NGINX_VERSION 1.23.1-1~bullseye
 ENV php_conf /etc/php/8.1/fpm/php.ini
 ENV fpm_conf /etc/php/8.1/fpm/pool.d/www.conf
-ENV COMPOSER_VERSION 2.4.2
+ENV COMPOSER_VERSION 2.4.4
 
 # Install Basic Requirements
 RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
