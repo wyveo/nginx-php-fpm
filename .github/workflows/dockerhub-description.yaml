@@ -6,6 +6,8 @@ on:
     paths:
       - README.md
       - .github/workflows/dockerhub-description.yaml
+  workflow_dispatch:
+  
 jobs:
   dockerHubDescription:
     runs-on: ubuntu-20.04

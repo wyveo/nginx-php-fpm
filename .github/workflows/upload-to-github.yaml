@@ -1,6 +1,7 @@
 name: Publish image to Docker Hub
 on:
   push:
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-20.04
