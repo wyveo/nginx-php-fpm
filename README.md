@@ -3,7 +3,7 @@
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?&style=for-the-badge)](https://github.com/wyveo/nginx-php-fpm/blob/master/LICENSE)
 
 ## Introduction
-This is a Dockerfile to build a debian based container image running nginx and php-fpm 8.1.x / 8.0.x / 7.4.x / 7.3.x / 7.2.x / 7.1.x / 7.0.x & Composer.
+This is a Dockerfile to build a debian based container image running nginx and php-fpm 8.2.x / 8.1.x / 7.4.x & Composer.
 
 ### Versioning
 | Docker Tag | GitHub Release | Nginx Version | PHP Version | Debian Version | Composer
@@ -41,3 +41,6 @@ Default web root:
 ```
 /usr/share/nginx/html
 ```
+
+---
+Forked from [wyveo/nginx-php-fpm](https://github.com/wyveo/nginx-php-fpm)
