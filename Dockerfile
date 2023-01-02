@@ -4,7 +4,8 @@ LABEL maintainer="Colin Wilson colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.23.1-1~bullseye
+ENV NGINX_VERSION   1.23.3
+ENV PKG_RELEASE     1~bullseye
 ENV php_conf /etc/php/8.2/fpm/php.ini
 ENV fpm_conf /etc/php/8.2/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 2.4.4
@@ -42,7 +43,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             libmemcached-dev \
             libmemcached11 \
             libmagickwand-dev \
-            nginx=${NGINX_VERSION} \
+            nginx=${NGINX_VERSION}-${PKG_RELEASE} \
             php8.2-fpm \
             php8.2-cli \
             php8.2-bcmath \
