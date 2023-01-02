@@ -1,6 +1,12 @@
-name: Publish image to Docker Hub
+name: Publish image to Github Image Registry
 on:
+  # Runs on pushes targeting the default branch
   push:
+    paths-ignore:
+     - ".github/**"
+  pull_request:
+    paths-ignore:
+     - ".github/**"
   workflow_dispatch:
 jobs:
   build:
