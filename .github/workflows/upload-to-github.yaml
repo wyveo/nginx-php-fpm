@@ -4,9 +4,11 @@ on:
   push:
     paths-ignore:
      - ".github/**"
+     - "**.md"
   pull_request:
     paths-ignore:
      - ".github/**"
+     - "**.md"
   workflow_dispatch:
 jobs:
   build:
