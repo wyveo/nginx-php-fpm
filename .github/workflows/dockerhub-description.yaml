@@ -6,8 +6,6 @@ on:
     paths:
       - README.md
       - .github/workflows/dockerhub-description.yaml
-    paths-ignore:
-     - ".github/**"
   workflow_dispatch:
   
 jobs:
