@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set branch-based environment variables
-      uses: iamtheyammer/branch-env-vars@v1.2.0
+      uses: iamtheyammer/branch-env-vars@v1.2.1
       with:
         TAG: |
           master:latest
