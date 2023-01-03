@@ -37,7 +37,7 @@ $ docker pull ghcr.io/lordmrcs/nginx-php-fpm:master
 ```
 
 ## Running
-To run the container from Github:
+To run via CLI the container from Github:
 ```
 $ sudo docker run -d ghcr.io/lordmrcs/nginx-php-fpm:master
 ```
@@ -45,6 +45,20 @@ $ sudo docker run -d ghcr.io/lordmrcs/nginx-php-fpm:master
 Default web root:
 ```
 /usr/share/nginx/html
+```
+## Running via docker-compose stack file
+This example mounts the default nginx HTML path to /var/www, overrides nginx and PHP default confs and exposes port 80.
+```
+version: '3'
+services:
+  web:
+    image: ghcr.io/lordmrcs/nginx-php-fpm:master
+    volumes:
+      - ./www/:/usr/share/nginx/html/
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./php.ini:/etc/php/8.2/fpm/php.ini
+    ports:
+      - 80:80
 ```
 
 ---
