@@ -47,7 +47,7 @@ Default web root:
 /usr/share/nginx/html
 ```
 ## Running via docker-compose stack file
-This example mounts the default nginx HTML path to /var/www, overrides nginx and PHP default confs and exposes port 80.
+This example mounts the default nginx HTML path to ./www, overrides nginx and PHP default confs and exposes port 80.
 ```
 version: '3'
 services:
