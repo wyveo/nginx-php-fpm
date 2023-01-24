@@ -25,6 +25,7 @@ Thumbs.db
 /.idea
 /.eclipse
 *.vi
+.vscode
 
 # logs files
 *.log
