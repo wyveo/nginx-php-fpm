@@ -1,3 +1,10 @@
+## [0.7.4] - 24-09-2023
+### Update
+- nginx version 1.25.2 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 8.2.9 - [https://secure.php.net/ChangeLog-8.php](https://secure.php.net/ChangeLog-8.php)
+- composer version 2.5.8 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+- README update
+
 ## [0.7.3] - 11-03-2022
 ### Update
 - build from debian:bullseye-slim image
