@@ -4,6 +4,7 @@
 - php version 8.2.9 - [https://secure.php.net/ChangeLog-8.php](https://secure.php.net/ChangeLog-8.php)
 - composer version 2.5.8 [https://getcomposer.org/download/](https://getcomposer.org/download/)
 - README update
+- index.php update
 
 ## [0.7.3] - 11-03-2022
 ### Update
