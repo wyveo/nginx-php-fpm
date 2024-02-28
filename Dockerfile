@@ -1,10 +1,10 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 LABEL maintainer="Colin Wilson colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.25.4-1~bullseye
+ENV NGINX_VERSION 1.25.4-1~bookworm
 ENV php_conf /etc/php/8.3/fpm/php.ini
 ENV fpm_conf /etc/php/8.3/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 2.7.1
@@ -27,7 +27,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
                   apt-key adv --batch --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
           done; \
     test -z "$found" && echo >&2 "error: failed to fetch GPG key $NGINX_GPGKEY" && exit 1; \
-    echo "deb http://nginx.org/packages/mainline/debian/ bullseye nginx" >> /etc/apt/sources.list \
+    echo "deb http://nginx.org/packages/mainline/debian/ bookworm nginx" >> /etc/apt/sources.list \
     && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
@@ -37,7 +37,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             zip \
             unzip \
             python3-pip \
-            python-setuptools \
+            python3-setuptools \
             git \
             libmemcached-dev \
             libmemcached11 \
@@ -62,9 +62,9 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php-pear \
     && pecl -d php_suffix=8.3 install -o -f redis memcached \
     && mkdir -p /run/php \
-    && pip install wheel \
-    && pip install supervisor \
-    && pip install git+https://github.com/coderanger/supervisor-stdout \
+    && pip install wheel --break-system-packages \
+    && pip install supervisor --break-system-packages \
+    && pip install git+https://github.com/coderanger/supervisor-stdout --break-system-packages \
     && echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d \
     && rm -rf /etc/nginx/conf.d/default.conf \
     && sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" ${php_conf} \
