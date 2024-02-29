@@ -1,4 +1,5 @@
-## [0.7.5] - 28-02-2024
+## [0.7.5] - 29-02-2024
+- build from debian:bookworm-slim image
 - nginx version 1.25.4 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
 - php version 8.3.3 - [https://secure.php.net/ChangeLog-7.php](https://secure.php.net/ChangeLog-8.php)
 - composer version 2.7.1 [https://getcomposer.org/download/](https://getcomposer.org/download/)

@@ -6,8 +6,8 @@ This is a Dockerfile to build a debian based container image running nginx and p
 ### Versioning
 | Docker Tag | GitHub Release | Nginx Version | PHP Version | Debian Version | Composer
 |------------|----------------|---------------|-------------|----------------|----------|
-| latest     | master Branch  | 1.25.4        | 8.3.3       | bullseye       | 2.7.1    |
-| php83      | php83 Branch   | 1.25.4        | 8.3.3       | bullseye       | 2.7.1    |
+| latest     | master Branch  | 1.25.4        | 8.3.3       | bookworm       | 2.7.1    |
+| php83      | php83 Branch   | 1.25.4        | 8.3.3       | bookworm       | 2.7.1    |
 | php82      | php82 Branch   | 1.25.2        | 8.2.9       | bullseye       | 2.5.8    |
 | php81      | php81 Branch   | 1.21.6        | 8.1.3       | bullseye       | 2.2.7    |
 | php80      | php80 Branch   | 1.21.6        | 8.0.16      | buster         | 2.0.13   |
