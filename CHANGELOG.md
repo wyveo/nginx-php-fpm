@@ -1,3 +1,15 @@
+## [0.7.5] - 25-08-2024
+### Update
+- nginx version 1.27.1 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
+- php version 8.3.10 - [https://secure.php.net/ChangeLog-8.php](https://secure.php.net/ChangeLog-8.php)
+- composer version 2.7.8 [https://getcomposer.org/download/](https://getcomposer.org/download/)
+- default.conf update
+- Dockerfile update
+- README update
+- index.php update
+- supervisord.conf update
+
+
 ## [0.7.4] - 24-09-2023
 ### Update
 - nginx version 1.25.2 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
