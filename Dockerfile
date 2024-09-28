@@ -1,10 +1,10 @@
-FROM debian:buster
+FROM debian:bullseye-slim
 
 LABEL maintainer="Colin Wilson colin@wyveo.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.21.6-1~buster
+ENV NGINX_VERSION 1.25.2-1~bullseye
 ENV php_conf /etc/php/7.3/fpm/php.ini
 ENV fpm_conf /etc/php/7.3/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 2.0.13
@@ -16,18 +16,18 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr wget apt-transport-https lsb-release ca-certificates \
     && \
     NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
-	  found=''; \
-	  for server in \
-		  ha.pool.sks-keyservers.net \
-		  hkp://keyserver.ubuntu.com:80 \
-		  hkp://p80.pool.sks-keyservers.net:80 \
-		  pgp.mit.edu \
-	  ; do \
-		  echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
-		  apt-key adv --batch --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
-	  done; \
+      found=''; \
+      for server in \
+          ha.pool.sks-keyservers.net \
+          hkp://keyserver.ubuntu.com:80 \
+          hkp://p80.pool.sks-keyservers.net:80 \
+          pgp.mit.edu \
+      ; do \
+          echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
+          apt-key adv --batch --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
+      done; \
     test -z "$found" && echo >&2 "error: failed to fetch GPG key $NGINX_GPGKEY" && exit 1; \
-    echo "deb http://nginx.org/packages/mainline/debian/ buster nginx" >> /etc/apt/sources.list \
+    echo "deb http://nginx.org/packages/mainline/debian/ bullseye nginx" >> /etc/apt/sources.list \
     && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
@@ -36,7 +36,7 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             nano \
             zip \
             unzip \
-            python-pip \
+            python3-pip \
             python-setuptools \
             git \
             libmemcached-dev \
@@ -64,7 +64,8 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && pecl -d php_suffix=7.3 install -o -f redis memcached \
     && mkdir -p /run/php \
     && pip install wheel \
-    && pip install supervisor supervisor-stdout \
+    && pip install supervisor \
+    && pip install git+https://github.com/coderanger/supervisor-stdout \
     && echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d \
     && rm -rf /etc/nginx/conf.d/default.conf \
     && sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" ${php_conf} \
