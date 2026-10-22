@@ -1,35 +1,25 @@
-FROM debian:bullseye-slim
+FROM debian:trixie-slim
 
-LABEL maintainer="Colin Wilson colin@wyveo.com"
+LABEL maintainer="sean@malmoset.com" \
+      org.opencontainers.image.source="https://github.com/SeanMollet/nginx-php-fpm" \
+      org.opencontainers.image.description="Unofficial successor to wyveo/nginx-php-fpm, patched for php2shell (CVE-2026-109618, CVE-2026-109619). nginx + PHP-FPM 8.2.35."
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
-ENV NGINX_VERSION 1.25.2-1~bullseye
 ENV php_conf /etc/php/8.2/fpm/php.ini
 ENV fpm_conf /etc/php/8.2/fpm/pool.d/www.conf
-ENV COMPOSER_VERSION 2.5.8
+ENV COMPOSER_VERSION 2.10.3
 
 # Install Basic Requirements
 RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && set -x \
     && apt-get update \
     && apt-get install --no-install-recommends $buildDeps --no-install-suggests -q -y gnupg2 dirmngr wget apt-transport-https lsb-release ca-certificates \
-    && \
-    NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
-          found=''; \
-          for server in \
-                  ha.pool.sks-keyservers.net \
-                  hkp://keyserver.ubuntu.com:80 \
-                  hkp://p80.pool.sks-keyservers.net:80 \
-                  pgp.mit.edu \
-          ; do \
-                  echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
-                  apt-key adv --batch --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
-          done; \
-    test -z "$found" && echo >&2 "error: failed to fetch GPG key $NGINX_GPGKEY" && exit 1; \
-    echo "deb http://nginx.org/packages/mainline/debian/ bullseye nginx" >> /etc/apt/sources.list \
-    && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
-    && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
+    && wget -qO- https://nginx.org/keys/nginx_signing.key | gpg --dearmor -o /usr/share/keyrings/nginx.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/nginx.gpg] http://nginx.org/packages/mainline/debian/ $(lsb_release -sc) nginx" > /etc/apt/sources.list.d/nginx.list \
+    && printf "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" > /etc/apt/preferences.d/99nginx \
+    && wget -qO /usr/share/keyrings/sury-php.gpg https://packages.sury.org/php/apt.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/sury-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list \
     && apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -q -y \
             apt-utils \
@@ -37,12 +27,8 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             zip \
             unzip \
             python3-pip \
-            python-setuptools \
             git \
-            libmemcached-dev \
-            libmemcached11 \
-            libmagickwand-dev \
-            nginx=${NGINX_VERSION} \
+            nginx \
             php8.2-fpm \
             php8.2-cli \
             php8.2-bcmath \
@@ -59,12 +45,12 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
             php8.2-pgsql \
             php8.2-intl \
             php8.2-xml \
+            php8.2-redis \
+            php8.2-memcached \
             php-pear \
-    && pecl -d php_suffix=8.2 install -o -f redis memcached \
+    && dpkg --compare-versions "$(dpkg-query -W -f='${Version}' php8.2-fpm)" ge 8.2.35 \
     && mkdir -p /run/php \
-    && pip install wheel \
-    && pip install supervisor \
-    && pip install git+https://github.com/coderanger/supervisor-stdout \
+    && pip install --no-cache-dir --break-system-packages --root-user-action=ignore supervisor git+https://github.com/coderanger/supervisor-stdout \
     && echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d \
     && rm -rf /etc/nginx/conf.d/default.conf \
     && sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" ${php_conf} \
@@ -81,15 +67,6 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" ${fpm_conf} \
     && sed -i -e "s/www-data/nginx/g" ${fpm_conf} \
     && sed -i -e "s/^;clear_env = no$/clear_env = no/" ${fpm_conf} \
-    && echo "extension=redis.so" > /etc/php/8.2/mods-available/redis.ini \
-    && echo "extension=memcached.so" > /etc/php/8.2/mods-available/memcached.ini \
-    && echo "extension=imagick.so" > /etc/php/8.2/mods-available/imagick.ini \
-    && ln -sf /etc/php/8.2/mods-available/redis.ini /etc/php/8.2/fpm/conf.d/20-redis.ini \
-    && ln -sf /etc/php/8.2/mods-available/redis.ini /etc/php/8.2/cli/conf.d/20-redis.ini \
-    && ln -sf /etc/php/8.2/mods-available/memcached.ini /etc/php/8.2/fpm/conf.d/20-memcached.ini \
-    && ln -sf /etc/php/8.2/mods-available/memcached.ini /etc/php/8.2/cli/conf.d/20-memcached.ini \
-    && ln -sf /etc/php/8.2/mods-available/imagick.ini /etc/php/8.2/fpm/conf.d/20-imagick.ini \
-    && ln -sf /etc/php/8.2/mods-available/imagick.ini /etc/php/8.2/cli/conf.d/20-imagick.ini \
     # Install Composer
     && curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
     && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \

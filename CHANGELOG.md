@@ -1,3 +1,13 @@
+## [0.7.5] - 21-10-2026
+### Security
+- php version 8.2.35 - fixes php2shell (CVE-2026-109618, CVE-2026-109619)
+### Update
+- build from debian:trixie-slim image (bullseye is EOL)
+- nginx mainline from nginx.org (no longer pinned)
+- composer version 2.10.3
+- use signed-by keyrings instead of apt-key and dead keyservers
+- redis/memcached from sury packages instead of pecl
+
 ## [0.7.4] - 24-09-2023
 ### Update
 - nginx version 1.25.2 - [http://nginx.org/en/CHANGES](http://nginx.org/en/CHANGES)
